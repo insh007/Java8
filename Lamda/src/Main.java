@@ -1,3 +1,4 @@
+// Functional Interface
 interface Executable {
     void execute();
 }
@@ -21,5 +22,14 @@ public class Main {
             }
         });
 
+        System.out.println("================================");
+        // Using Lambda Expression
+        runner.run(() -> System.out.println("Hello there!! - Lambda"));
+
+        // Lambda with multiple statements
+        runner.run(() -> {
+            System.out.println("One more statement with the help of Lambda");
+            System.out.println("Hello there!! - Lambda");
+        });
     }
 }
