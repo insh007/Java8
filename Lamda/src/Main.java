@@ -1,6 +1,6 @@
 // Functional Interface
 interface Executable {
-    int execute(int a); // abstract method
+    int execute(int a, int b); // abstract method
 }
 
 interface StringExecutable {
@@ -10,7 +10,7 @@ interface StringExecutable {
 class Runner {
     public void run(Executable e){
         System.out.println("Executing code block....");
-        int value = e.execute(5);
+        int value = e.execute(5, 5);
         System.out.println("Return value is: " + value);
     }
 
@@ -27,9 +27,9 @@ public class Main {
         // Pass as an Anonymous class - Before Java 8
         runner.run(new Executable() {
             @Override
-            public int execute(int a) {
+            public int execute(int a, int b) {
                 System.out.println("Hello there!!");
-                return 7 + a;
+                return b + a;
             }
         });
 
@@ -45,10 +45,12 @@ public class Main {
 //        });
 
         // We don't need curly bracket if there is only single expression
-        runner.run((int a) -> 10 + a);
-        runner.run(a -> 10 + a); // without use of bracket
-        // OR
-        // If there is ambiguous method call present then we need to specified type of parameter
-        runner.run((int a) -> 10 + a);
+        runner.run((a,b) -> b + a);
+
+        System.out.println("Method Reference");
+        runner.run(Integer::sum);
+//        runner.run(a,b -> 10 + a); // without use of bracket this will not work with multiple parameters
+
+
     }
 }
