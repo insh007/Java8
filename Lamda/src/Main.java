@@ -3,10 +3,20 @@ interface Executable {
     int execute(int a); // abstract method
 }
 
+interface StringExecutable {
+    int execute(String a); // abstract method
+}
+
 class Runner {
     public void run(Executable e){
         System.out.println("Executing code block....");
         int value = e.execute(5);
+        System.out.println("Return value is: " + value);
+    }
+
+    public void run(StringExecutable e){
+        System.out.println("Executing code block....");
+        int value = e.execute("PI");
         System.out.println("Return value is: " + value);
     }
 }
@@ -37,6 +47,7 @@ public class Main {
         // We don't need curly bracket if there is only single expression
         runner.run((int a) -> 10 + a);
         // OR
-        runner.run((a) -> 10 + a);
+        // If there is ambiguous method call present then we need to specified type of parameter
+        runner.run((int a) -> 10 + a);
     }
 }
