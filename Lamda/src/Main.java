@@ -14,11 +14,11 @@ class Runner {
         System.out.println("Return value is: " + value);
     }
 
-    public void run(StringExecutable e){
-        System.out.println("Executing code block....");
-        int value = e.execute("PI");
-        System.out.println("Return value is: " + value);
-    }
+//    public void run(StringExecutable e){
+//        System.out.println("Executing code block....");
+//        int value = e.execute("PI");
+//        System.out.println("Return value is: " + value);
+//    }
 }
 
 public class Main {
@@ -46,6 +46,7 @@ public class Main {
 
         // We don't need curly bracket if there is only single expression
         runner.run((int a) -> 10 + a);
+        runner.run(a -> 10 + a); // without use of bracket
         // OR
         // If there is ambiguous method call present then we need to specified type of parameter
         runner.run((int a) -> 10 + a);
