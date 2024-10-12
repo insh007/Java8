@@ -23,13 +23,21 @@ class Runner {
 
 public class Main {
     public static void main(String[] args) {
+
+//       final int c = 100; // JDK 7
+        int c = 100; // JDK 8 - Effectively final - no need to use final in JDK 8
+//        c = 50; // Can't change because of Effectively final when you want to use this variable in anonymous class or lambda expression
+
+        int d = 40; // In outer scope
+
         Runner runner = new Runner();
         // Pass as an Anonymous class - Before Java 8
         runner.run(new Executable() {
             @Override
             public int execute(int a, int b) {
                 System.out.println("Hello there!!");
-                return b + a;
+                int d = 50; //can do this in method of anonymous classes because of other scope in anonymous class
+                return c + d + b + a; // 160 - 100+50+5+5
             }
         });
 
@@ -45,10 +53,13 @@ public class Main {
 //        });
 
         // We don't need curly bracket if there is only single expression
-        runner.run((a,b) -> b + a);
+        runner.run((a,b) -> {
+//            int d = 50; // can't do this because of already defined variable; no new scope
+           return c + d + b + a; // 150 - 100+40+5+5
+        });
 
-        System.out.println("Method Reference");
-        runner.run(Integer::sum);
+//        System.out.println("Method Reference");
+//        runner.run(Integer::sum);
 //        runner.run(a,b -> 10 + a); // without use of bracket this will not work with multiple parameters
 
 
