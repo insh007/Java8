@@ -15,11 +15,11 @@ public class MyClass implements A,B {
 
     public static void main(String[] args){
         MyClass myClass = new MyClass();
-        myClass.sayHello();
+        myClass.sayHello(); // This will produce ambiguity
     }
 
     @Override
     public void sayHello(){
-        B.super.sayHello();
+        B.super.sayHello(); // This will resolve ambiguity
     }
 }
